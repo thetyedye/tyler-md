@@ -26,6 +26,11 @@ export default {
     type: 'page',
     theme: pageTheme,
   },
+  philosophy: {
+    title: 'Philosophy',
+    type: 'page',
+    theme: pageTheme,
+  },
   now: {
     title: 'Now',
     type: 'page',

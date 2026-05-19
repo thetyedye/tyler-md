@@ -4,14 +4,14 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: <span style={{ fontWeight: 700 }}>tyler.md</span>,
   project: {
-    link: 'https://github.com/tylerborjeson',
+    link: 'https://github.com/thetyedye/tyler-md',
   },
-  docsRepositoryBase: 'https://github.com/tylerborjeson/tyler-md',
+  docsRepositoryBase: 'https://github.com/thetyedye/tyler-md',
   search: {
     placeholder: 'Search…',
   },
   footer: {
-    text: (
+    content: (
       <span>
         © {new Date().getFullYear()} Tyler Borjeson. Built with{' '}
         <a href="https://nextra.site" target="_blank" rel="noreferrer">
@@ -26,18 +26,11 @@ const config: DocsThemeConfig = {
     toggleButton: false,
   },
   darkMode: true,
-  primaryHue: 200,
-  primarySaturation: 60,
   feedback: {
     content: null,
   },
   editLink: {
     content: null,
-  },
-  useNextSeoProps() {
-    return {
-      titleTemplate: '%s — tyler.md',
-    }
   },
 }
 

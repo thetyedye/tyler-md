@@ -9,6 +9,8 @@ This repository is a personal career/life operating site for Tyler Borjeson, bui
 
 Treat this repo as a living source of truth for Tyler's professional identity and career-related context. Content should be easy for humans to read and easy for agents to navigate, summarize, update, and reuse.
 
+A core philosophy for this project is captured on the Philosophy page: Tyler cares about creating simple, useful products with care, taste, attention, and strong user experience. In an AI-slop world, the goal is not more generic output; the goal is better judgment, better craft, and more human-feeling work.
+
 ## Tech stack
 
 - Framework: Next.js
@@ -31,6 +33,7 @@ Current main pages:
 - `pages/context.mdx` — high-signal context about Tyler, working style, values, preferences, operating principles
 - `pages/work.mdx` — resume/work history/accomplishments
 - `pages/projects.mdx` — projects, builds, experiments, shipped work
+- `pages/philosophy.mdx` — Tyler's way of thinking, product/craft methodology, and anti-slop north star
 - `pages/now.mdx` — current focus, priorities, active projects, learning, constraints
 - `pages/stack.mdx` — tools, hardware, software, AI stack, preferred workflows
 - `pages/about.mdx` — longer personal/professional story
@@ -77,6 +80,7 @@ When editing this repo:
 - Prefer editing `.mdx` files in `pages/` for content changes.
 - Keep content clear, direct, and useful. Avoid vague marketing language.
 - Preserve Tyler's voice where possible: practical, specific, candid, and high-signal.
+- Protect the Quality or Slop philosophy: simple, useful, human, high-care work over generic AI output.
 - Use headings and bullets generously so pages are easy to skim.
 - Favor factual updates over embellished prose.
 - If adding claims about Tyler's work, projects, or experience, mark uncertain details as placeholders unless Tyler has provided the facts.
