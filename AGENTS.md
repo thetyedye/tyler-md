@@ -87,6 +87,7 @@ When editing this repo:
 - Do not invent employment history, credentials, metrics, personal details, or project outcomes.
 - If information is missing, leave a clear placeholder like `[TODO: add specific role/project/result]`.
 - Keep public/private sensitivity in mind. If something seems personal, confidential, or employer-sensitive, ask before publishing it in a public page.
+- **Never commit and push without explicit approval from Tyler.** Always ask before running `git commit` or `git push` on this repo.
 
 ## Content philosophy
 
