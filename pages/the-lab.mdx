@@ -1,0 +1,350 @@
+---
+title: The Lab
+---
+
+# The Lab
+
+*Status: building · Strategy Labs · data engine first*
+
+The Lab is the software layer underneath Strategy Labs.
+
+Strategy Labs is the service layer: client relationships, strategic judgment, creative taste, performance expertise, and the human accountability that makes the agency valuable.
+
+The Lab is the layer underneath: the data engine, context engine, workflow skills, governance, and agent interfaces that make the agency's work queryable, repeatable, and easier to operate.
+
+This is not a chatbot project. It is infrastructure.
+
+```text
+Strategy Labs = service layer
+The Lab = software layer
+
+Data engine = trusted numbers
+Context engine = trusted memory
+Agent harness = interface that asks both
+```
+
+The end goal is simple to say and hard to build:
+
+> Anyone on the team should be able to ask a business question and get a clear, source-backed answer from the same trusted operating layer.
+
+## The problem
+
+Digital agencies run on scattered truth.
+
+Performance data lives in ad platforms, Shopify, GA4, Klaviyo, Funnel, spreadsheets, dashboards, and exports. Client context lives in Slack, calls, docs, emails, decks, task tools, and people's heads. The actual workflow is often: ask the person who remembers, pull three dashboards, search Slack, open the last deck, and hope nothing important changed.
+
+AI does not magically fix that. In some ways, it makes the problem worse.
+
+If you connect an LLM to Slack, Drive, and a few dashboards, you have access. You do not have understanding. The model can search more places, but it still does not know which source is current, which metric definition is canonical, which channel counts toward revenue, which call superseded a decision, or whether the data is stale.
+
+Connectors are access. The Lab is the system that turns access into trusted operation.
+
+```text
+Connectors alone
+  -> more places to search
+  -> more context in the prompt
+  -> more plausible answers
+  -> still not a governed system
+
+The Lab
+  -> ingestion
+  -> normalization
+  -> validation
+  -> source-backed context
+  -> governed tools
+  -> agent-written explanation
+```
+
+That middle layer is the product.
+
+## What I am building
+
+The Lab has two major engines and one interface layer.
+
+```text
+               Agent Harness
+     Claude · Codex · Hermes · Slack · future app
+                    |
+                    v
+              Governed tools
+              CLI / MCP / API
+          /                     \
+         v                       v
+Data Engine                Context Engine
+trusted numbers            trusted memory
+```
+
+The agent is not the source of truth. The agent is the operator.
+
+The engine returns structured results with metrics, warnings, freshness, and provenance. The agent turns that into something a human can read.
+
+## The data engine
+
+This is the first priority because it creates immediate value.
+
+The data engine is deterministic by default:
+
+```text
+Meta / Google / Shopify / other sources
+  -> ingestion runner
+  -> raw Supabase tables
+  -> normalized views
+  -> validation and freshness checks
+  -> metric rules
+  -> governed CLI/MCP/API
+  -> agent-readable JSON
+```
+
+It should own:
+
+- source ingestion from ad platforms and commerce systems;
+- raw tables that preserve platform payloads;
+- normalized views like paid media daily, commerce daily, and blended performance;
+- metric definitions like MER, ROAS, CPC, AOV, revenue, and orders;
+- client-specific rules for platform inclusion, channel inclusion, attribution windows, and revenue fields;
+- sync logs, freshness checks, validation failures, and source provenance;
+- clear unsupported responses when the engine cannot answer.
+
+The LLM should not calculate metrics. It should not invent joins. It should not decide attribution windows on the fly. It should not query raw tables for client-facing answers.
+
+The LLM can route the request, fill parameters, call the right tool, and explain the result.
+
+Example:
+
+```text
+Human:
+  "Show me Meta campaign performance for this client over the last 7 days."
+
+Agent resolves:
+  client = alien-gear
+  dataset = paid_media_daily
+  filter = platform: meta
+  dimension = campaign
+  metrics = spend, clicks, CPC, conversions, revenue, ROAS
+
+Engine executes:
+  validated query over normalized data
+
+Agent responds:
+  table + summary + warnings + citations
+```
+
+That is the line I care about: flexible for humans, deterministic underneath.
+
+## The context engine
+
+The context engine is the second half: the agency brain.
+
+It is where qualitative truth lives:
+
+- client profiles;
+- goals and KPI framing;
+- call notes and transcripts;
+- decisions and dates;
+- people and stakeholders;
+- creative constraints;
+- playbooks;
+- brand and design principles;
+- open questions;
+- source-backed history.
+
+The target shape looks like this:
+
+```text
+Source systems
+  Fireflies / Fathom / Zoom
+  Google Drive / Docs / Sheets / Slides
+  Slack
+  client emails and briefs
+  uploaded raw files
+  repo docs and skills
+        |
+        v
+Context ingestion
+  fetch, parse, chunk, classify, extract claims, link entities
+        |
+        v
+Raw context store
+        |
+        v
+Curated knowledge base
+        |
+        v
+Retrieval and citation layer
+        |
+        v
+Agent harness
+```
+
+This is harder than the data engine because narrative is messy. Context gets stale. Notes conflict. A call can supersede a deck. A Slack message may be useful but not canonical. A transcript can mention a plan that never became a decision.
+
+So the context engine needs more than search. It needs provenance, freshness, review state, and clear failure modes.
+
+If the system does not know what the client said about discounting on the last call, the correct answer is not a confident guess. The correct answer is:
+
+```text
+I do not have a cited source for that. I checked the indexed call notes and briefs. We need the transcript or a human note before treating this as known.
+```
+
+That is how you fight AI slop: make the system honest about what it knows.
+
+## The semantic layer
+
+The semantic layer is the vocabulary that lets data and context talk to each other.
+
+It answers questions like:
+
+- What does MER mean here?
+- Which Shopify channels count as included revenue?
+- Which platforms count as paid media?
+- What does "hit the goal" mean?
+- Which metric is the client using when they say "efficiency"?
+- What source wins when two sources disagree?
+
+This is where the agency's judgment becomes explicit.
+
+The semantic layer should be versioned, reviewable, and visible. If a metric matters repeatedly, it should not live in a prompt. It should live in code, config, SQL, or a data rule.
+
+## The agent harness
+
+The agent harness is where Claude, Codex, Hermes, Slack, or a future app lives.
+
+It does not need its own version of the truth. It needs access to governed tools.
+
+```text
+User prompt
+  -> agent harness
+  -> Lab tool call
+  -> data/context engine
+  -> structured result
+  -> agent response
+```
+
+The agent does the human-facing work:
+
+- understand the messy request;
+- ask a clarifying question when the request is ambiguous;
+- choose the right governed tool;
+- summarize warnings and freshness;
+- explain the answer in normal language;
+- draft a report, brief, or memo from already-computed data and cited context.
+
+The engine does the trust work.
+
+## Why this matters for an agency
+
+Agencies do not lose time only because reports take too long. They lose time because every useful answer requires reconstruction.
+
+What changed? Where is the latest data? What did we promise the client? What did the last call say? Which channel counts? Which spreadsheet is current? Who knows the history? What is safe to send?
+
+The Lab is meant to turn that reconstruction work into infrastructure.
+
+If this is built well, the team gets:
+
+- faster client prep;
+- more reliable reporting;
+- fewer dashboard-and-spreadsheet assembly loops;
+- better handoffs between CSM, media, creative, data, and leadership;
+- quicker onboarding for new team members;
+- more consistent use of agency playbooks;
+- agents that know when they do not know;
+- reusable workflows that compound instead of resetting every week.
+
+The economic bet is not "AI replaces the agency."
+
+The bet is:
+
+> AI-native agencies will separate human judgment from information assembly. The winners will keep the judgment human and make the assembly dramatically faster, safer, and more repeatable.
+
+## My role
+
+I am building The Lab from the inside of a real agency.
+
+That matters because this is not a clean-room AI demo. The work has to survive real client data, real messy context, real team workflows, real reporting pressure, and real judgment calls.
+
+My job is partly engineering, partly data architecture, partly product thinking, partly operations design.
+
+I am mapping the business into a form agents can safely operate:
+
+- what sources exist;
+- what should be ingested;
+- what should stay human-reviewed;
+- which metrics need deterministic definitions;
+- what workflows repeat enough to become skills;
+- where agents help;
+- where agents must not be trusted;
+- how to make outputs cite sources and flag gaps.
+
+This is how I like to work: take the messy operating reality, slow down enough to understand it, then turn the repeatable parts into a system.
+
+## My working principles
+
+**Deterministic by default.**  
+If the output is a number, join, filter, permission, validation result, freshness state, or source-of-truth rule, it belongs in deterministic software.
+
+**LLMs at the edges.**  
+Use the model for interpretation, routing, explanation, drafting, and triage. Do not use it as the calculator or the database.
+
+**Source-backed or say no.**  
+Every useful answer should know where it came from. If the system does not know, it should say that plainly.
+
+**Build the graph, not the wrapper.**  
+Agent interfaces will change. The durable asset is the operational graph: clients, people, data, decisions, workflows, rules, and history.
+
+**Quality or slop.**  
+AI makes it cheap to produce plausible output. The work is building systems that keep the output honest, useful, and cared for.
+
+## Current state
+
+The current demo is early, but the shape is becoming clear.
+
+Today, the seed includes:
+
+- a local `tools/lab` CLI for governed data access;
+- Supabase-backed client performance data;
+- metric rules and client config;
+- a hand-curated demo-client knowledge base;
+- raw source docs and transcripts;
+- skills and resolver rules for agent workflows;
+- architecture notes for the data engine, context engine, and agent query flows;
+- a Meta Ads CLI ingestion spike to test direct platform ingestion.
+
+The near-term focus is data-engine-first:
+
+```text
+1. Make the current data query path reliable.
+2. Test direct ad-platform ingestion locally.
+3. Store raw source rows safely.
+4. Build normalized views.
+5. Add freshness and validation checks.
+6. Expose governed CLI/MCP queries.
+7. Only then broaden into richer context retrieval.
+```
+
+The context engine is coming, but it should not outrun the data engine. Context without trusted data becomes polished narrative over uncertain numbers. Trusted data can create value immediately.
+
+## What this unlocks
+
+The finished version is not one tool. It is a substrate.
+
+It can power:
+
+- Slack agents for quick internal questions;
+- Claude/Cowork or Codex workflows for deeper analysis;
+- client performance briefs;
+- Monday morning account summaries;
+- source-backed state-of-the-business reports;
+- onboarding briefs for new team members;
+- creative and media investigation workflows;
+- internal dashboards and product surfaces;
+- future client-facing tools.
+
+The important part is that all of those surfaces use the same underlying truth.
+
+Not one version of the data in Slack, another in a spreadsheet, another in a deck, and another in somebody's memory.
+
+One governed layer. Many interfaces.
+
+## The sentence
+
+The Lab is my attempt to build the operating layer a modern digital agency needs: deterministic data, governed context, explicit rules, and agents that help humans move faster without pretending to be the source of truth.

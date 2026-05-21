@@ -26,6 +26,11 @@ export default {
     type: 'page',
     theme: pageTheme,
   },
+  'the-lab': {
+    title: 'The Lab',
+    type: 'page',
+    theme: pageTheme,
+  },
   philosophy: {
     title: 'Philosophy',
     type: 'page',
