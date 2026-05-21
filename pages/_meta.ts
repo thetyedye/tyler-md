@@ -56,4 +56,9 @@ export default {
     type: 'page',
     theme: pageTheme,
   },
+  noko: {
+    title: 'Noko',
+    type: 'page',
+    theme: pageTheme,
+  },
 }
