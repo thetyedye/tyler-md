@@ -12,7 +12,7 @@ const NAV: NavItem[] = [
   { href: '/the-lab', label: 'The Lab' },
   { href: '/philosophy', label: 'Philosophy' },
   { href: '/now', label: 'Now' },
-  { href: '/stack', label: 'Stack' },
+
   { href: '/about', label: 'About' },
   { href: 'mailto:tyler@strategylabs.us', label: 'Contact ↗', external: true },
 ]
