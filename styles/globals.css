@@ -4,11 +4,12 @@
   --color-bg: #fafafa;
   --color-fg: #09090b;
   --color-primary: #18181b;
-  --color-accent: #1d4ed8;
+  --color-accent: #1d4ED8;
   --color-muted: #e8ecf0;
   --color-muted-fg: #64748b;
   --color-border: #e4e4e7;
   --content-width: 680px;
+  --sidebar-width: 220px;
 }
 
 *,
@@ -31,15 +32,13 @@ body {
   color: var(--color-fg);
   line-height: 1.6;
   min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
 }
 
 #__next {
-  display: flex;
-  flex-direction: column;
   min-height: 100dvh;
 }
+
+/* ---------- Prose ---------- */
 
 .prose h1,
 .prose h2,
@@ -134,19 +133,72 @@ a:focus-visible {
   margin: 2rem 0;
 }
 
-.site-nav {
-  border-bottom: 1px solid var(--color-border);
-  padding: 1rem 0;
-}
-.site-nav ul {
-  list-style: none;
+/* ---------- Layout shell ---------- */
+
+.site-shell {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.5rem;
+  min-height: 100dvh;
+}
+
+.site-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* allow main to shrink within flex parent */
+}
+
+.site-main {
+  padding: 3rem 1.5rem 4rem;
+  flex: 1;
+}
+.container {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
 }
+
+/* ---------- Sidebar (desktop) ---------- */
+
+.site-sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+.sidebar-inner {
+  position: sticky;
+  top: 0;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.sidebar-brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.sidebar-brand:hover {
+  color: var(--color-accent);
+}
+.sidebar-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+/* ---------- Top bar (mobile only) ---------- */
+
+.site-topbar {
+  display: none;
+}
+
+/* ---------- Nav link (shared) ---------- */
+
 .nav-link {
   font-family: var(--font-heading);
   font-size: 0.875rem;
@@ -164,14 +216,7 @@ a:focus-visible {
   font-weight: 600;
 }
 
-.site-main {
-  padding: 3rem 1.5rem 4rem;
-  flex: 1;
-}
-.container {
-  max-width: var(--content-width);
-  margin: 0 auto;
-}
+/* ---------- Footer ---------- */
 
 .site-footer {
   border-top: 1px solid var(--color-border);
@@ -189,4 +234,39 @@ a:focus-visible {
 }
 .site-footer a:hover {
   color: var(--color-primary);
+}
+
+/* ---------- Mobile: collapse sidebar into top bar ---------- */
+
+@media (max-width: 768px) {
+  .site-shell {
+    flex-direction: column;
+  }
+  .site-sidebar {
+    display: none;
+  }
+  .site-topbar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+  }
+  .topbar-brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .site-topbar ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    padding: 0;
+  }
+  .site-main {
+    padding: 2rem 1.5rem 3rem;
+  }
 }

@@ -17,35 +17,74 @@ const NAV: NavItem[] = [
   { href: 'mailto:tyler@strategylabs.us', label: 'Contact ↗', external: true },
 ]
 
-function Nav() {
+function isActiveFor(href: string, pathname: string) {
+  if (href === '/') return pathname === '/'
+  return pathname === href || pathname.startsWith(href + '/')
+}
+
+function Sidebar() {
   const { pathname } = useRouter()
   return (
-    <nav className="site-nav">
+    <aside className="site-sidebar">
+      <div className="sidebar-inner">
+        <Link href="/" className="sidebar-brand">
+          Tyler Borjeson
+        </Link>
+        <nav>
+          <ul className="sidebar-nav">
+            {NAV.map((item) => {
+              if (item.external) {
+                return (
+                  <li key={item.href}>
+                    <a href={item.href} className="nav-link" rel="noopener">
+                      {item.label}
+                    </a>
+                  </li>
+                )
+              }
+              const active = isActiveFor(item.href, pathname)
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`nav-link${active ? ' active' : ''}`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+      </div>
+    </aside>
+  )
+}
+
+function TopBar() {
+  const { pathname } = useRouter()
+  return (
+    <nav className="site-topbar">
+      <Link href="/" className="topbar-brand">
+        Tyler Borjeson
+      </Link>
       <ul>
         {NAV.map((item) => {
-          const isActive =
-            !item.external &&
-            (item.href === '/'
-              ? pathname === '/'
-              : pathname === item.href || pathname.startsWith(item.href + '/'))
           if (item.external) {
             return (
               <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="nav-link"
-                  rel="noopener"
-                >
+                <a href={item.href} className="nav-link" rel="noopener">
                   {item.label}
                 </a>
               </li>
             )
           }
+          const active = isActiveFor(item.href, pathname)
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`nav-link${isActive ? ' active' : ''}`}
+                className={`nav-link${active ? ' active' : ''}`}
               >
                 {item.label}
               </Link>
@@ -70,14 +109,17 @@ function Footer() {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <>
-      <Nav />
-      <main className="site-main">
-        <div className="container">
-          <article className="prose">{children}</article>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <div className="site-shell">
+      <Sidebar />
+      <TopBar />
+      <div className="site-body">
+        <main className="site-main">
+          <div className="container">
+            <article className="prose">{children}</article>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    </div>
   )
 }
