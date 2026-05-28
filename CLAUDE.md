@@ -7,7 +7,6 @@ This is Tyler Borjeson's personal markdown site (a Nextra app). It's a career ar
 - A Nextra (Next.js) site published to `tyler.md`.
 - One MDX file per top-level route in `pages/`.
 - `pages/_meta.ts` controls the nav order — don't reorder without asking.
-- The voice/quality bar lives in `pages/philosophy.mdx`. Read it before editing anything else.
 
 ## Voice and quality rules
 

@@ -6,20 +6,31 @@ title: Projects
 
 Things I'm building. Day-job project first, then personal stuff.
 
+## Dato
+*Status: building · Strategy Labs · day job · part of The Lab*
+
+Dato is an internal agent for the Strategy Labs team — the team-facing surface of The Lab. One place to query everything the agency runs on: marketing data across all clients, plus the company knowledge that gives it meaning — workflows, playbooks, client vaults, call transcripts, decisions.
+
+A custom narrow harness built on the Pi SDK. Read-only by design: no `bash`, no `edit`, no `write` — just `read`, `grep`, `find`, `ls`, and governed query tools. Connects to a semantic layer (`funnel.io/`) that defines what every field means before any query runs, then routes through the Funnel.io MCP for live data.
+
+Live in Slack with a select group of teammates today. Currently focused on:
+
+- expanding from data queries into context retrieval (calls, docs, briefs)
+- tighter audit logging for every query and answer
+- making the harness feel like its own thing, not a coding agent in disguise
+
+The bet: the team should be able to ask a business question and get a cited, source-backed answer from the same trusted operating layer — without opening a dashboard, rebuilding a report, or asking the person who remembers.
+
+---
+
 ## The Lab
 *Status: building · Strategy Labs · day job*
 
-The software layer underneath Strategy Labs: a deterministic data engine, a governed context engine, workflow skills, and agent interfaces that make agency work queryable, repeatable, and source-backed.
+Strategy Labs' product studio — the umbrella that lets us take new tools to market fast without the weight of a full brand launch. Internal code names, beta with friendlies, iterate on real feedback, kill what doesn't work. Closest reference is [Every](https://every.to).
 
-The short version:
+Current products under the umbrella include Signal (call analysis), Benchmarking (cross-brand performance comparison), and Uno Mas Food Costing. Dato is the team-internal agent that sits underneath.
 
-- **Data engine:** trusted numbers from ad platforms, commerce systems, normalized views, validation, metric rules, and governed CLI/MCP/API access.
-- **Context engine:** trusted memory from calls, docs, Slack, briefs, playbooks, client history, decisions, and cited knowledge.
-- **Agent harness:** Claude, Codex, Hermes, Slack, or future surfaces that ask the engines for structured answers and explain them to humans.
-
-The point is not "a chatbot for the agency." The point is the operating layer underneath the agency: clean data, source-backed context, explicit rules, and agents that know when they do not know.
-
-[Read the full project writeup →](/the-lab)
+[More on The Lab →](/the-lab)
 
 ---
 
@@ -37,17 +48,17 @@ My personal knowledge graph in plain markdown. Three layers: `raw/` for friction
 
 ---
 
-## hermes
+## Noko
 *Status: running · personal*
 
-The always-on Telegram agent that brings tyler-agent to life. Dockerized runtime that mounts `tyler-agent` and `tyler-brain` as volumes — code change reflects live, no rebuild. Heartbeat, scheduled skills (morning brief, midday check-in, ambient capture), voice-first via Whispr Flow. Phone-first dictation, source-backed responses, calendar awareness.
+My personal agent assistant. Always-on, voice-first, lives on my phone via Telegram. Dockerized runtime that mounts `tyler-agent` and `tyler-brain` as volumes — code change reflects live, no rebuild. Heartbeat, scheduled skills (morning brief, midday check-in, ambient capture). Source-backed responses, calendar awareness. Same architecture as the agent infrastructure I think about for work, applied to my own life.
 
 ---
 
 ## tyler.md (this site)
 *Status: shipping · personal*
 
-A living source of truth for me and the agents I work with. Hand-written markdown, Nextra frontend. Career artifact, philosophy doc, and agent-readable context, all in one place.
+A living source of truth for me and the agents I work with. Hand-written markdown, Nextra frontend. Career artifact and agent-readable context, all in one place.
 
 ---
 

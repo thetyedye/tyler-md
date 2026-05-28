@@ -1,0 +1,57 @@
+---
+title: Ethos
+---
+
+# Ethos
+
+This is what I actually care about and what I'm focused on solving.
+
+## The bet
+
+Every service business will eventually need a software layer underneath it. The consulting and agency model is splitting into two layers: a service layer (relationships, judgment, taste, accountability) and a software layer (data, context, workflows, agent interfaces, governance). The companies that build the software layer first will have a structural advantage.
+
+The opportunity isn't "agencies that use AI tools." It's agencies that have made themselves *usable by AI* — clean data, structured knowledge, source-of-truth rules, agent-readable workflows, permissions, human approval points.
+
+> Using AI is not the same as being usable by AI.
+
+## The problem
+
+Service businesses run on scattered truth.
+
+Performance data lives in ad platforms, commerce systems, GA4, Klaviyo, Funnel, spreadsheets, dashboards, exports. Client context lives in Slack, calls, docs, emails, decks, task tools, and people's heads. The actual workflow is often: ask the person who remembers, pull three dashboards, search Slack, open the last deck, and hope nothing important changed.
+
+AI does not magically fix that. In some ways it makes it worse. Connect an LLM to Slack, Drive, and a few dashboards and you have *access* — not understanding. The model can search more places, but it still doesn't know which source is current, which metric definition is canonical, which call superseded a decision, or whether the data is stale.
+
+> Connectors are access. The software layer is what turns access into trusted operation.
+
+## What the layer actually is
+
+Three things underneath the agent harness:
+
+- **A data engine.** Deterministic by default. Source ingestion, raw tables, normalized views, metric rules, freshness and validation checks, governed CLI/MCP/API tools. The LLM does not calculate metrics, invent joins, or decide attribution windows on the fly.
+- **A context engine.** The company brain. Client vaults, playbooks, decisions, people, history. Curated, source-backed, provenance-aware. Knows what it doesn't know.
+- **A semantic layer.** The vocabulary that lets data and context talk to each other. What does "efficiency" mean for this client? Which channels count as paid? Which source wins when two disagree? Versioned, reviewable, visible — not buried in a prompt.
+
+The agent harness on top is interchangeable. Claude, Codex, Slack, internal app, whatever comes next. The durable asset is the operational graph underneath: clients, people, data, decisions, workflows, rules, history.
+
+## Working principles
+
+**Deterministic by default.** If the output is a number, a join, a filter, a permission check, a validation result — it belongs in software, not in a prompt.
+
+**LLMs at the edges.** Use the model for interpretation, routing, explanation, drafting, triage. Not as the calculator or the database.
+
+**Source-backed or say no.** Every useful answer should know where it came from. If the system doesn't know, the correct answer is "I don't have a cited source for that" — not a confident guess.
+
+**Build the graph, not the wrapper.** Agent interfaces will keep changing. The operational graph won't.
+
+**Quality or slop.** AI makes it cheap to produce plausible output. The work is building systems that keep the output honest, useful, and cared for.
+
+## Agents that empower, not replace
+
+The bet is not "AI replaces the team." AI-native means agents do the gathering, compiling, formatting, and repetitive production. People do the judgment, the client relationship, the creative decision, the final ownership.
+
+The economics improve when skilled operators spend less time on assembly and more time on judgment. Human judgment is reserved for the parts of the work where it actually matters.
+
+## North star
+
+Build the operating layer a modern service business needs: deterministic data, governed context, explicit rules, and agents that help humans move faster without pretending to be the source of truth. Combat the slop. Make the assembly dramatically faster, safer, and more repeatable — and keep the judgment human.
