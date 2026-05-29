@@ -6,15 +6,14 @@ type NavItem = { href: string; label: string; external?: boolean }
 
 const NAV: NavItem[] = [
   { href: '/', label: "Hi, I'm Tyler" },
-  { href: '/context', label: 'Context' },
   { href: '/work', label: 'Work' },
   { href: '/projects', label: 'Projects' },
   { href: '/the-lab', label: 'The Lab' },
-  { href: '/philosophy', label: 'Philosophy' },
+  { href: '/ethos', label: 'Ethos' },
   { href: '/now', label: 'Now' },
 
   { href: '/about', label: 'About' },
-  { href: 'mailto:tyler@strategylabs.us', label: 'Contact ↗', external: true },
+  { href: '/contact', label: 'Contact' },
 ]
 
 function isActiveFor(href: string, pathname: string) {

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls ~/Desktop/sl-agentic-planning/ 2>/dev/null)",
+      "Read(//Users/tylerborjeson/Desktop/sl-agentic-planning/**)"
+    ]
+  }
+}
