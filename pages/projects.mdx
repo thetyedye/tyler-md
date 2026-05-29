@@ -9,17 +9,9 @@ Things I'm building. Day-job project first, then personal stuff.
 ## Dato Agent
 *Status: building · Strategy Labs · day job · part of The Lab*
 
-Dato is an internal agent for the Strategy Labs team — the team-facing surface of The Lab. One place to query everything the agency runs on: marketing data across all clients, plus the company knowledge that gives it meaning — workflows, playbooks, client vaults, call transcripts, decisions.
+Dato is an internal agent for the Strategy Labs team — the team-facing surface of The Lab. One place to query everything the agency runs on: verified marketing data across all clients, plus the company knowledge that gives it meaning — workflows, playbooks, client vaults, call transcripts, decisions.
 
-A custom narrow harness built on the Pi SDK. Read-only by design: no `bash`, no `edit`, no `write` — just `read`, `grep`, `find`, `ls`, and governed query tools. Connects to a semantic layer (`funnel.io/`) that defines what every field means before any query runs, then routes through the Funnel.io MCP for live data.
-
-Live in Slack with a select group of teammates today. Currently focused on:
-
-- expanding from data queries into context retrieval (calls, docs, briefs)
-- tighter audit logging for every query and answer
-- making the harness feel like its own thing, not a coding agent in disguise
-
-The bet: the team should be able to ask a business question and get a cited, source-backed answer from the same trusted operating layer — without opening a dashboard, rebuilding a report, or asking the person who remembers.
+It lives wherever the team already works: Slack, Claude Code, Cowork, Codex, any agent harness. Anyone at the agency can query our verified marketing data from any spot, and get a cited, source-backed answer — without opening a dashboard, rebuilding a report, or asking the person who remembers.
 
 ---
 
@@ -45,11 +37,4 @@ My portable agent core. Identity, skills, and routing rules — same agent acros
 *Status: ongoing · personal*
 
 My personal Obsidian knowledge graph second brain. Three layers: `raw/` for frictionless daily capture, `sources/` for curated external material, `wiki/` for compiled knowledge with cross-linked entities (people, companies, projects, ideas, tools). Every fact has a source. Brain-first: my agents check here before reaching for an external API.
-
----
-
-## Noko
-*Status: running · personal*
-
-My personal agent assistant. Always-on, voice-first, lives on my phone via Telegram. Dockerized runtime that mounts `tyler-agent` and `tyler-brain` as volumes — code change reflects live, no rebuild. Heartbeat, scheduled skills (morning brief, midday check-in, ambient capture). Source-backed responses, calendar awareness. Same architecture as the agent infrastructure I think about for work, applied to my own life.
 
